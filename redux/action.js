@@ -1,3 +1,3 @@
-export const roleChoice = (payload) => ({
-    type:'roleChoice', payload : payload
+export const isCustomer = (payload) => ({
+    type:'isCustomer', payload : payload
 })

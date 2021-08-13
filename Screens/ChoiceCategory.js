@@ -1,9 +1,6 @@
 import React,{useCallback, useState} from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, SafeAreaView, Button } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
-import { ROLES } from '../CONST';
-import {roleChoice} from '../redux/action'
-import RadioButton from '../Components/RadioButton';
 
 const ChoiceCategory = props => {
   

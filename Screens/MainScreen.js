@@ -1,33 +1,26 @@
 import React,{useCallback, useState} from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, SafeAreaView, Button } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, Image, Button } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
-import { ROLES } from '../CONST';
-import {roleChoice} from '../redux/action'
-import RadioButton from '../Components/RadioButton';
+import {isCustomer} from '../redux/action'
+import {db} from '../firebase'
+
+/*
+The page for selecting the client's role(customer or performer)
+After the selection, it redirects to the category selection page and saves the data in State and in db
+*/
 
 const MainScreen = props => {
     const dispatch = useDispatch()
-    const [selected, setSelected] = useState(0)
-    const role = useSelector(state => state.role)
-    
-    const sendRequest = async () => {
-        
-        console.log(role)
-        const response = await fetch(
 
-            'https://react-native-delivery-default-rtdb.firebaseio.com//orders.json',
-        {
-            method: 'POST',
-            headers: {
-                'Content-Type' : 'application/json'
-            },
-            body: JSON.stringify({
-                userId: 'userId',
-                date: new Date(),
-                role: role
-            })
-        }    
-        )
+    const sendRequest = async (choiceCustemer) => {
+        
+        dispatch(isCustomer(choiceCustemer))
+        data = {
+                        userId: 'userId',
+                        date: new Date(),
+                        isCustomer: choiceCustemer
+                     }
+        db.collection('users').doc('1').set(data)
 
         props.navigation.navigate('ChoiceCategory')
         
@@ -35,35 +28,59 @@ const MainScreen = props => {
   
     return(
         <View style={styles.container}>
-            <View>
-                <RadioButton 
-                    selected={selected}
-                    options={ROLES} 
-                    horizontal={true} 
-                    onChangeSelect={(opt, i) => {
-                    dispatch(roleChoice((i === 0 ? 'customer' : 'implementer')))
-                    setSelected(i)
-                }}/>
-            </View>
-            <View style={styles.button}>
-                <Button title='Отправить' onPress={sendRequest}/>
-            </View>
+            <TouchableOpacity style={styles.customer}
+            onPress={() => {sendRequest(choiceCustemer=true)}}>
+                <View style={styles.bnt}>
+                    <Text style={styles.txt}>Создать задание</Text> 
+                </View>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.master}
+            onPress={() => {sendRequest(choiceCustemer=false)}}>
+                <View style={styles.bnt}>
+                    <Text style={styles.txt}>Стать исполнителем</Text> 
+                </View>
+            </TouchableOpacity>
         </View>
-        
-          
     )
 
 }
 
 const styles = StyleSheet.create({
     container: {
-      flex: 1,
-      alignItems: 'center',
-      justifyContent: 'center',
+       flex: 1,
+       alignItems: 'center',
+       justifyContent: 'center',
+       backgroundColor: '#281543'
     },
-    button: {
-        margin: 5
-    }
+    customer: {
+        margin: 7,
+        width: 200,
+        height: 40,
+        borderRadius: 18,
+        backgroundColor: '#281543',
+        borderWidth: 1,
+        borderColor: 'white'
+    },
+    master: {
+        margin: 7,
+        width: 200,
+        height: 40,
+        borderRadius: 18,
+        backgroundColor: '#72b645'
+    },
+    bnt: {
+        alignItems: 'center',
+       justifyContent: 'center',
+       color: 'white',
+       padding: 10,
+    },
+    txt: {
+        color: 'white',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+
+
   });
 
 export default MainScreen

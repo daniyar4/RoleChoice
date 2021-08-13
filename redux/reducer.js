@@ -1,10 +1,10 @@
 const initialState = {
-    role: [],
+    role: null,
 }
 
 const reducer = (state = initialState, action) => {
     switch(action.type){
-        case 'roleChoice':
+        case 'isCustomer':
             return {
                 ...state,
                 role: action.payload
