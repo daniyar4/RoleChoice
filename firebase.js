@@ -38,4 +38,8 @@ else{
 
 export const db = app.firestore()
 
+export const storage = firebase.storage()
+
+export const storageRef = firebase.storage().ref();
+
 export default firebase
