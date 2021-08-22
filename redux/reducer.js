@@ -1,8 +1,9 @@
 const initialState = {
-    role: null,
+    isCustomer: null,
     avatar: 'https://firebasestorage.googleapis.com/v0/b/react-native-delivery.appspot.com/o/images%2Fno-avatar.jpg?alt=media&token=8e2504c6-4fdf-449d-86ca-396c19f98460',
     abouteMe: '',
-    reviews: []
+    reviews: [],
+    order: {}
 }
 
 const reducer = (state = initialState, action) => {
@@ -26,6 +27,11 @@ const reducer = (state = initialState, action) => {
                 return {
                     ...state,
                     reviews: action.payload
+                }
+            case 'getOrder':
+                return {
+                    ...state,
+                    order: action.payload
                 }
             
         default:

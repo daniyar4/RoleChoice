@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import {getAvatar, getAbouteMe, getReviews} from '../redux/action'
 import {StarRating} from '../Components/StarRating/star-rating';
 
-const MainScreen = props => {
+const MasterProfileScreen = props => {
 
     const ratingObj = {
         ratings: 4,
@@ -124,7 +124,8 @@ const MainScreen = props => {
                 </View>
             </TouchableOpacity>
             <TouchableOpacity style={styles.choiceMaster}
-            onPress={() => {choiceMaster(masterId=true)}}
+            onPress={() => {choiceMaster(masterId=true)
+                            props.navigation.navigate('StatusScreen')}}
             >
                 <View style={styles.bnt}>
                     <Text style={styles.txt}>Выбрать исполнителя</Text> 
@@ -137,9 +138,6 @@ const MainScreen = props => {
 
 
 const styles = StyleSheet.create({
-    scroll: {
-        
-    },
 
     container: {
         flex: 5
@@ -215,4 +213,4 @@ const styles = StyleSheet.create({
 }
 )
 
-export default MainScreen
+export default MasterProfileScreen

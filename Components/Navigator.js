@@ -6,6 +6,7 @@ import MainScreen from '../Screens/MainScreen'
 import ChoiceCategory from '../Screens/ChoiceCategory'
 import ChoiceRole from '../Screens/ChoiceRole'
 import MasterProfileScreen from '../Screens/MasterProfileScreen'
+import StatusScreen from '../Screens/StatusScreen'
 
 const MainStackNavigator = createNativeStackNavigator();
 
@@ -17,6 +18,7 @@ const MainStack = () => {
         <MainStackNavigator.Screen name="ChoiceCategory" component={ChoiceCategory}/>
         <MainStackNavigator.Screen name="ChoiceRole" component={ChoiceRole}/>
         <MainStackNavigator.Screen name="MasterProfileScreen" component={MasterProfileScreen}/>
+        <MainStackNavigator.Screen name="StatusScreen" component={StatusScreen}/>
     </MainStackNavigator.Navigator>
       )
   }
