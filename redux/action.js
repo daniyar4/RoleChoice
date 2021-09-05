@@ -13,7 +13,3 @@ export const getAbouteMe = (payload) => ({
 export const getReviews = (payload) => ({
     type: 'getReviews', payload: payload
 })
-
-export const getOrder = (payload) => ({
-    type: 'getOrder', payload: payload
-})

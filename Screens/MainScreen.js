@@ -11,6 +11,7 @@ const MainScreen = props => {
             <Button title='страница выбора Роли' onPress={() => props.navigation.navigate('ChoiceRole')}/>
             <Button title='страница профиля мастера' onPress={() => props.navigation.navigate('MasterProfileScreen')}/>
             <Button title='страница статуса заказа' onPress={() => props.navigation.navigate('StatusScreen')}/>
+            <Button title='location component' onPress={() => props.navigation.navigate('LocationComponent')}/>
         </View>
                 
     )

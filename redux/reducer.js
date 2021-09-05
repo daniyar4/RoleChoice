@@ -28,11 +28,6 @@ const reducer = (state = initialState, action) => {
                     ...state,
                     reviews: action.payload
                 }
-            case 'getOrder':
-                return {
-                    ...state,
-                    order: action.payload
-                }
             
         default:
             return state
